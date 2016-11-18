@@ -5,74 +5,77 @@
 	<script>
 		// CUT HERE --- 8< ------------------------------------>
 		function simplemodal(text) {
-			var wrap = document.createElement("div");
-			var modal = document.createElement("div");
-			var close = document.createElement("div");
-			modal.innerHTML = text;
+			if(!document.oblktooltipactive) {
+				document.oblktooltipactive = true;
+				var wrap = document.createElement("div");
+				var modal = document.createElement("div");
+				var close = document.createElement("div");
+				modal.innerHTML = text;
 
-			document.body.appendChild(wrap);
-			document.body.appendChild(modal);
-			document.body.appendChild(close);
+				document.body.appendChild(wrap);
+				document.body.appendChild(modal);
+				document.body.appendChild(close);
 
-			function ttrsz() {
-				modal.style.left = parseInt((window.innerWidth / 2) - (modal.offsetWidth / 2)) + 'px';
-				modal.style.top =  parseInt((window.innerHeight / 2) - (modal.offsetHeight / 2)) + 'px';
-				close.style.left = parseInt((window.innerWidth / 2) + (modal.offsetWidth / 2) - 16) + 'px';
-				close.style.top = parseInt((window.innerHeight / 2) - (modal.offsetHeight / 2) - 10) + 'px';
-				if(close.offsetTop < 0) {
-					close.style.top = '0';
-					close.style.left = 'auto';
-					close.style.right = '0';
-				}
-			};
-			function cl() {
-				window.removeEventListener('resize', ttrsz, false);
-				document.removeEventListener('keyup', cl, false);
-				document.body.removeChild(wrap);
-				document.body.removeChild(modal);
-				document.body.removeChild(close);
-				oblktooltipactive = false;
-			};
+				function ttrsz() {
+					modal.style.left = parseInt((window.innerWidth / 2) - (modal.offsetWidth / 2)) + 'px';
+					modal.style.top =  parseInt((window.innerHeight / 2) - (modal.offsetHeight / 2)) + 'px';
+					close.style.left = parseInt((window.innerWidth / 2) + (modal.offsetWidth / 2) - 16) + 'px';
+					close.style.top = parseInt((window.innerHeight / 2) - (modal.offsetHeight / 2) - 10) + 'px';
+					if(close.offsetTop < 0) {
+						close.style.top = '0';
+						close.style.left = 'auto';
+						close.style.right = '0';
+					}
+				};
+				function cl() {
+					window.removeEventListener('resize', ttrsz, false);
+					document.removeEventListener('keyup', cl, false);
+					document.body.removeChild(wrap);
+					document.body.removeChild(modal);
+					document.body.removeChild(close);
+					document.oblktooltipactive = false;
+				};
 
-			wrap.onclick = cl;
-			close.onclick = cl;
-			document.addEventListener('keyup', cl, false);
-			window.addEventListener('resize', ttrsz, false);
+				wrap.onclick = cl;
+				close.onclick = cl;
+				document.addEventListener('keyup', cl, false);
+				window.addEventListener('resize', ttrsz, false);
 
-			wrap.style.width = "100vw";
-			wrap.style.height = "100vh";
-			wrap.style.position = "fixed";
-			wrap.style.background = "#000";
-			wrap.style.opacity = "0.7";
-			wrap.style.left = "0";
-			wrap.style.top = "0";
-			wrap.style.zIndex = "10";
+				wrap.style.width = "100vw";
+				wrap.style.height = "100vh";
+				wrap.style.position = "fixed";
+				wrap.style.background = "#000";
+				wrap.style.opacity = "0.7";
+				wrap.style.left = "0";
+				wrap.style.top = "0";
+				wrap.style.zIndex = "10";
 
-			modal.style.maxWidth = "90vw";
-			modal.style.maxHeight = "90vh";
-			modal.style.padding = "1em";
-			modal.style.background = "#fff";
-			modal.style.position = "fixed";
-			modal.style.zIndex = "11";
-			modal.style.border = "5px solid #dde";
-			//modal.style.borderRadius = "5%";
-			modal.style.boxShadow = "0 0 3em #000";
-			modal.style.overflow = "auto";
+				modal.style.maxWidth = "90vw";
+				modal.style.maxHeight = "90vh";
+				modal.style.padding = "1em";
+				modal.style.background = "#fff";
+				modal.style.position = "fixed";
+				modal.style.zIndex = "11";
+				modal.style.border = "5px solid #dde";
+				//modal.style.borderRadius = "5%";
+				modal.style.boxShadow = "0 0 3em #000";
+				modal.style.overflow = "auto";
 
-			close.innerHTML = " x ";
-			close.lineHeight = "32px";
-			close.style.position = "fixed";
-			close.style.color = "#fff";
-			close.style.background = "#7bf";
-			close.style.padding = "0.2em 0.5em";
-			close.style.borderRadius = "50%";
-			close.style.cursor = "pointer";
-			close.style.textShadow = "0 0 0.5em #000";
-			close.style.boxShadow = "0 0 3em #000";
+				close.innerHTML = " x ";
+				close.lineHeight = "32px";
+				close.style.position = "fixed";
+				close.style.color = "#fff";
+				close.style.background = "#7bf";
+				close.style.padding = "0.2em 0.5em";
+				close.style.borderRadius = "50%";
+				close.style.cursor = "pointer";
+				close.style.textShadow = "0 0 0.5em #000";
+				close.style.boxShadow = "0 0 3em #000";
 
-			close.style.zIndex = "12";
+				close.style.zIndex = "12";
 
-			ttrsz();
+				ttrsz();
+			}
 		}
 		// <------------------------------------ >8 --- TILL HERE
 	</script>
